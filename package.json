@@ -1,0 +1,27 @@
+{
+  "name": "rick-and-morty",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imronshoimov/rick-and-morty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imronshoimov/rick-and-morty/issues"
+  },
+  "homepage": "https://github.com/imronshoimov/rick-and-morty#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "node-fetch": "^3.0.0",
+    "pg": "^8.7.1"
+  }
+}
