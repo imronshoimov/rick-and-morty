@@ -1,12 +1,10 @@
 import process from "process";
-import dotenv from "dotenv";
 import { poolDemo } from "./lib/database.js";
 import { DATA } from "./query.js";
 import request from "./lib/fetch.js";
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
-dotenv.config({ path: ".env" });
-const api = process.env.API;
+const api = "https://rickandmortyapi.com/api/character";
 
 poolDemo(DATA.create);
 

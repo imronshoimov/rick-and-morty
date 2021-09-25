@@ -1,9 +1,8 @@
 import pkg from "pg";
-import dotenv from "dotenv";
-dotenv.config({ path: ".env" });
 
-const connectionString = process.env.DB_CONNECT;
-console.log(connectionString);
+const password = "62I8anq3cFq5GYh2u4Lh"
+const connectionString = `postgres://candidate:${password}@rc1c-2m0keqdcncuwizmx.mdb.yandexcloud.net:6432/db1?ssl=true`;
+
 const { Pool } = pkg;
 const pool = new Pool({
     connectionString,
