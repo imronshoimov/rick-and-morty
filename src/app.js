@@ -1,39 +1,38 @@
-// import fetch from 'node-fetch';
-import pkg from 'pg';
+import process from "process";
 import dotenv from "dotenv";
+import { poolDemo } from "./lib/database.js";
+import { DATA } from "./query.js";
+import request from "./lib/fetch.js";
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 1;
 
 dotenv.config({ path: ".env" });
-
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
-
-const connectionString = process.env.DB_CONNECT;
 const api = process.env.API;
 
-const { Pool } = pkg;
-const pool = new Pool({
-    connectionString
-});
+poolDemo(DATA.create);
 
-async function fetch () {
-    const client = await pool.connect()
-    try {
-        const { rows } = await client.query("select now()");
-        return rows;
-    } catch(error) {
-        console.log(error);
-    } finally {
-        client.release()
+async function insertCharacters() {
+    let response = await request(api);
+    
+    for(let item of response["results"]) {
+        const name = item.name;
+        const data = JSON.stringify(item);
+        
+        poolDemo(DATA.insert, name, data);
     }
-};
+    
+    const api = response["info"].next;
+    console.log(api);
+    
+    await request(api)
+}
 
-fetch()
+insertCharacters()
 
 
-// async function request() {
-//     const response = await fetch(api);
-//     const data = await response.json();
-//     console.log(data)
-// }
+
+
+
+
 
 
 
