@@ -1,5 +1,6 @@
 const DATA = {
     create: `
+    DROP TABLE IF EXISTS characters;
     CREATE TABLE characters(
         id serial primary key,
         name varchar(150) not null,
@@ -11,7 +12,7 @@ const DATA = {
         name,
         data
     ) VALUES ( $1, $2 )
-    RETURNING id;
+    RETURNING *;
     `,
     select: `SELECT * FROM characters;`
 }
